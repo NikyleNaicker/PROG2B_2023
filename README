@@ -13,3 +13,4 @@ The same controls are used for adding, deleting and editing semester details as 
 Close the dialog window to return to the main window.
 In the main window is where the user can record their self study details.
 It has the same controls as the dialog windows except for the delete function
+## Note please click the header (hours of self study left) so the data grid can refresh ONLY after adding a new entry
