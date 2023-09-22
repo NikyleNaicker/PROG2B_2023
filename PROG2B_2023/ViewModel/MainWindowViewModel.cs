@@ -27,6 +27,8 @@ namespace PROG2B_2023.ViewModel
         public ObservableCollection<Record> Record { get; set; }
         public RelayCommand AddCommand => new RelayCommand(execute => AddRecord());
         public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteRecord(), canExecute => SelectedRecord != null);
+
+        int self, credits, weeks, classhours;
         public MainWindowViewModel()
         {
             //Module = new ObservableCollection<Module>();
@@ -45,6 +47,7 @@ namespace PROG2B_2023.ViewModel
             {
                 selectedRecord = value;
                 Calc();
+                selectedRecord.week_study_hours = self;
                 OnPropertyChanged();
             }
         }
@@ -57,8 +60,8 @@ namespace PROG2B_2023.ViewModel
                 ModuleName2 = "Module Name",
                 Credits2 = 10,
                 Classhours2 = 4,
-                NumWeeks2 =12,
-                week_study_hours= 0,
+                NumWeeks2 = 12,
+                week_study_hours = 0,
                 Num_of_hours_studied = 0
             });
         }
@@ -89,12 +92,13 @@ namespace PROG2B_2023.ViewModel
         {
             try
             {
-                int self, credits, weeks, classhours;
+                //code for the calculation of the number hours needed for self study
+                
                 credits = selectedRecord.Credits2;
                 weeks = selectedRecord.NumWeeks2;
                 classhours = selectedRecord.Classhours2;
-                self = credits * 10 / weeks - classhours;
-                selectedRecord.week_study_hours = self;
+                self = (credits * 10 / weeks) - classhours;
+                
             }
             catch(Exception ex)
             {
